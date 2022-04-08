@@ -1,24 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from './redux/store';
+import { addReservation } from './redux/features/reservationSlice';
+import { ReservationCard, FoodCard } from './components';
 
 function App() {
+  const [reservationNameInput, setReservationNameInput] = useState('');
+
+  const reservations = useSelector(
+    (state: RootState) => state.reservationsFromStore.value
+  );
+  const dispatch = useDispatch();
+
+  const handleAddReservation = () => {
+    if (!reservationNameInput) return;
+    dispatch(addReservation(reservationNameInput));
+    setReservationNameInput('');
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <div className='container'>
+        <div className='reservation-container'>
+          <div>
+            <h5 className='reservation-header'>Reservations</h5>
+            <div className='reservation-cards-container'>
+              {reservations.map((reservation, idx) => {
+                return (
+                  <ReservationCard key={idx} name={reservation} id={idx} />
+                );
+              })}
+            </div>
+          </div>
+          <div className='reservation-input-container'>
+            <input
+              type='text'
+              value={reservationNameInput}
+              onChange={e => setReservationNameInput(e.target.value)}
+            />
+            <button onClick={handleAddReservation}>Add1</button>
+          </div>
+        </div>
+        <div className='customer-food-container'>
+          {reservations.map((food, idx) => {
+            return <FoodCard key={idx} name={food} />;
+          })}
+        </div>
+      </div>
     </div>
   );
 }
