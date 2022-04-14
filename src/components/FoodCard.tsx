@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../redux/hooks';
 import { addFood } from '../redux/features/foodSlice';
 
 interface FoodCardType {
@@ -10,8 +10,8 @@ interface FoodCardType {
 export function FoodCard({ name }: FoodCardType) {
   const [foodNameInput, setFoodNameInput] = useState('');
 
-  const food = useSelector((state: any) => state.foodFromStore.value);
-  const dispatch = useDispatch();
+  const food = useAppSelector(state => state.foodFromStore.value);
+  const dispatch = useAppDispatch();
 
   return (
     <div className='customer-food-card-container'>
@@ -27,7 +27,6 @@ export function FoodCard({ name }: FoodCardType) {
           <button
             onClick={() => {
               dispatch(addFood({ main: name, side: foodNameInput }));
-              console.log(food);
             }}
           >
             Add2

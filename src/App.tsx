@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import './App.css';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from './redux/store';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { RootState, AppDispatch } from './redux/store';
+import { useAppSelector, useAppDispatch } from './redux/hooks';
 import { addReservation } from './redux/features/reservationSlice';
 import { ReservationCard, FoodCard } from './components';
 
 function App() {
   const [reservationNameInput, setReservationNameInput] = useState('');
 
-  const reservations = useSelector(
-    (state: RootState) => state.reservationsFromStore.value
+  const reservations = useAppSelector(
+    state => state.reservationsFromStore.value
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleAddReservation = () => {
     if (!reservationNameInput) return;

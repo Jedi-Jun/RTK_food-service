@@ -16,10 +16,8 @@ export const foodSlice = createSlice({
     addFood: (state, action: PayloadAction<FoodState>) => {
       const { main, side } = action.payload;
       if(!state.value[main]) {
-        console.log(111);
         state.value[main] = [side]
       } else {
-        console.log(333);
         state.value[main].push(side)
       };
     },
