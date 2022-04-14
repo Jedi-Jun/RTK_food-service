@@ -5,7 +5,7 @@ export interface ReservationState {
 }
 
 const initialState: ReservationState = {
-  value: ['cake', 'pizza'],
+  value: ['Jacob', 'Megan'],
 }
 
 export const reservationSlice = createSlice({
@@ -15,11 +15,11 @@ export const reservationSlice = createSlice({
     addReservation: (state, action: PayloadAction<string>) => {
       state.value.push(action.payload);
     },
-    // removeReservation: (state, action: PayloadAction<string>) => {
-    //   state.value = state.value.filter(ele => ele !== action.payload);
-    // }
     removeReservation: (state, action: PayloadAction<number>) => {
       state.value.splice(action.payload, 1);
+    /* removeReservation: (state, action: PayloadAction<string>) => {
+      state.value = state.value.filter(ele => ele !== action.payload);
+    } */
     }  
   }
 });

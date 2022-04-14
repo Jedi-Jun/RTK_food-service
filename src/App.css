@@ -56,8 +56,14 @@
   flex-direction: column;
 }
 
-.customer-food {
+.customer-food ul{
   display: flex;
+}
+
+.customer-food li { 
+  list-style: none;
+  margin-right: 10px;
+  
 }
 
 .customer-food-container p {

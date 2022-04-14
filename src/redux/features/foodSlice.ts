@@ -5,6 +5,10 @@ export interface FoodState {
   side: string;
 }
 
+export interface ReservationState {
+  value: string[];
+}
+
 const initialState: any = {
   value: {}
 }
@@ -21,9 +25,9 @@ export const foodSlice = createSlice({
         state.value[main].push(side)
       };
     },
-    // removefood: (state, action: PayloadAction<number>) => {
-    //   state.value.splice(action.payload, 1);
-    // }  
+    /* removefood: (state, action: PayloadAction<number>) => {
+      state.value.splice(action.payload, 1);
+    } */  
   }
 });
 

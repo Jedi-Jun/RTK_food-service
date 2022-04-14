@@ -45,7 +45,7 @@ function App() {
         </div>
         <div className='customer-food-container'>
           {reservations.map((food, idx) => {
-            return <FoodCard key={idx} name={food} />;
+            return <FoodCard key={idx} name={food} id={idx} />;
           })}
         </div>
       </div>

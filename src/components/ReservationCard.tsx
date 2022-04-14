@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../redux/hooks';
 import { removeReservation } from '../redux/features/reservationSlice';
 
 interface ReservationCardType {
@@ -7,14 +7,14 @@ interface ReservationCardType {
 }
 
 export function ReservationCard({ name, id }: ReservationCardType) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <div
       className='reservation-card-container'
       onClick={() => dispatch(removeReservation(id))}
     >
-      {name}
+      {id + 1}. {name}
     </div>
   );
 }

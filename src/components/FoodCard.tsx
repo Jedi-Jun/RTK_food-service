@@ -4,10 +4,10 @@ import { addFood } from '../redux/features/foodSlice';
 
 interface FoodCardType {
   name: string;
-  id?: number;
+  id: number;
 }
 
-export function FoodCard({ name }: FoodCardType) {
+export function FoodCard({ name, id }: FoodCardType) {
   const [foodNameInput, setFoodNameInput] = useState('');
 
   const food = useAppSelector(state => state.foodFromStore.value);
@@ -15,9 +15,17 @@ export function FoodCard({ name }: FoodCardType) {
 
   return (
     <div className='customer-food-card-container'>
-      <p>{name}</p>
+      <p>
+        {id + 1}. {name}
+      </p>
       <div className='customer-foods-container'>
-        <div className='customer-food'>{food[name]}</div>
+        <div className='customer-food'>
+          <ul>
+            {food[name]?.map((item: number, idx: number) => (
+              <li key={idx}>{item}</li>
+            ))}
+          </ul>
+        </div>
         <div className='customer-food-input-container'>
           <input
             type='text'
@@ -27,6 +35,7 @@ export function FoodCard({ name }: FoodCardType) {
           <button
             onClick={() => {
               dispatch(addFood({ main: name, side: foodNameInput }));
+              setFoodNameInput('');
             }}
           >
             Add2
